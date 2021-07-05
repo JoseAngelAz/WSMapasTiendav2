@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WSMapasTiendav2", "WSMapasTiendav2\WSMapasTiendav2.csproj", "{B10237B1-2EA7-41EE-9C3C-8C01401D3F93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B10237B1-2EA7-41EE-9C3C-8C01401D3F93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B10237B1-2EA7-41EE-9C3C-8C01401D3F93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B10237B1-2EA7-41EE-9C3C-8C01401D3F93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B10237B1-2EA7-41EE-9C3C-8C01401D3F93}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18D03BC1-E52C-40CC-9011-DF6D6C3A4C75}
+	EndGlobalSection
+EndGlobal
