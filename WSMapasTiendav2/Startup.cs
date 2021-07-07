@@ -41,7 +41,7 @@ namespace WSMapasTiendav2
                                   });
             });
             services.AddControllers();
-            //inyectando servicios por scopped a cada request que hacemos al servicio.
+            //inyectando Dependencias de IUserServicio y UserServicio por scopped a cada request que hacemos al servicio.
             services.AddScoped<IUserServicio, UserServicio>();
             services.AddSwaggerGen(c =>
             {

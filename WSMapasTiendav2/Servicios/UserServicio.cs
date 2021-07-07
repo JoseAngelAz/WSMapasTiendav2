@@ -14,7 +14,7 @@ namespace WSMapasTiendav2.Servicios
         public UsuarioRespuesta Auth(AuthPeticion apeticion)
         {
             //UsuarioRespuesta
-            UsuarioRespuesta userResp = null;
+            UsuarioRespuesta userResp = new UsuarioRespuesta();
 
             //buscamos en la db
             using (var db = new MapasTiendaWSV2Context())

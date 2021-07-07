@@ -6,25 +6,43 @@ using System.Threading.Tasks;
 using WSMapasTiendav2.Models;
 using WSMapasTiendav2.Models.Peticiones;
 using WSMapasTiendav2.Models.Respuestas;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using WSMapasTiendav2.Servicios;
 
 namespace WSMapasTiendav2.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {
+        private IUserServicio _userService;
+    
+
+        public UsuarioController(IUserServicio userService)
+        {
+            _userService = userService;
+        }
+       
+        //Respuesta Generica para el cliente
+        RespuestaGenerica miRes = new RespuestaGenerica();
 
         //Autenticar Usuario
         [HttpPost("login")]
-        public IActionResult Autentificar([FromBody] AuthPeticion apeticion)
+        public IActionResult Autentificar([FromBody] AuthPeticion Apeticion)
         {
-            return Ok(apeticion);
+            var UserResponse = _userService.Auth(Apeticion);
+            if (UserResponse == null)
+            {
+                miRes.Exito = 0;
+                miRes.Mensaje = "Usuario o contraseña incorrecta!";
+                return BadRequest(miRes);
+            }
+            miRes.Exito = 1;
+            miRes.Data = UserResponse;
+            return Ok(miRes);
         }
 
-        //Respuesta Generica para el cliente
-        RespuestaGenerica miRes = new RespuestaGenerica();
+        
 
         // GET: api/<UsuarioController>
         [HttpGet]
