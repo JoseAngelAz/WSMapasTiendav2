@@ -15,6 +15,14 @@ namespace WSMapasTiendav2.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
+
+        //Autenticar Usuario
+        [HttpPost("login")]
+        public IActionResult Autentificar([FromBody] AuthPeticion apeticion)
+        {
+            return Ok(apeticion);
+        }
+
         //Respuesta Generica para el cliente
         RespuestaGenerica miRes = new RespuestaGenerica();
 
