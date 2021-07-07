@@ -9,6 +9,6 @@ namespace WSMapasTiendav2.Servicios
 {
     interface IUserServicio
     {
-        RespuestaGenerica Auth(AuthPeticion apeticion);
+        UsuarioRespuesta Auth(AuthPeticion apeticion);
     }
 }

@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WSMapasTiendav2.Servicios;
 
 namespace WSMapasTiendav2
 {
@@ -40,6 +41,8 @@ namespace WSMapasTiendav2
                                   });
             });
             services.AddControllers();
+            //inyectando servicios por scopped a cada request que hacemos al servicio.
+            services.AddScoped<IUserServicio, UserServicio>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WSMapasTiendav2", Version = "v1" });
