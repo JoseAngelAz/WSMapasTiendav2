@@ -112,8 +112,8 @@ namespace WSMapasTiendav2.Controllers
         }
 
         //ELIMINAR Tiendas
-        [HttpDelete]
-        public IActionResult DeleteStores(int id) {           
+        [HttpDelete("{id}")]
+        public IActionResult DeleteStores(long id) {           
 
             try
             {
