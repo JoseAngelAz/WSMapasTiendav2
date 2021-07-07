@@ -39,7 +39,7 @@ namespace WSMapasTiendav2.Controllers
 
         // GET api/<UsuarioController>/5 Consulta el Usuario por su ID
         [HttpGet("{id}")]
-        public IActionResult GetUsuarioById(int id)
+        public IActionResult GetUsuarioById(long id)
         {            
 
             try {
@@ -84,7 +84,7 @@ namespace WSMapasTiendav2.Controllers
         }
 
         // PUT api/<UsuarioController>/5 Modificar USUARIO
-        [HttpPut("{id}")]
+        [HttpPut]
         public IActionResult EditUsuario(UsuarioPeticion user)
         {            
             try {
@@ -95,7 +95,8 @@ namespace WSMapasTiendav2.Controllers
                     User.Email = user.email;
                     User.Password = user.password;
                     User.Rol = user.rol;
-
+                    db.Entry(User).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    db.SaveChanges();
                     //llenamos objs de respuesta para el cliente
                     miRes.Exito = 1;
                     miRes.Data = User;
@@ -108,7 +109,7 @@ namespace WSMapasTiendav2.Controllers
 
         // DELETE api/<UsuarioController>/5 ELIMINAR USUARIO
         [HttpDelete("{id}")]
-        public IActionResult DeleteUsuario(int id)
+        public IActionResult DeleteUsuario(long id)
         {            
             try
             {

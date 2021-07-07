@@ -99,7 +99,7 @@ namespace WSMapasTiendav2.Controllers
                     Tienda.Latitud = storeP.latitud;
                     Tienda.Longitud = storeP.longitud;
                     //Insertamos en la base de datos y guardamos
-                    db.Add(Tienda);
+                    db.Entry(Tienda).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
                     //llenamos objs de respuesta para el cliente
                     miRes.Exito = 1;
