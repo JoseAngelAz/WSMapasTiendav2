@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,11 +7,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using WSMapasTiendav2.Models.commons;
 using WSMapasTiendav2.Servicios;
 
 namespace WSMapasTiendav2
@@ -43,6 +47,33 @@ namespace WSMapasTiendav2
             services.AddControllers();
             //inyectando Dependencias de IUserServicio y UserServicio por scopped a cada request que hacemos al servicio.
             services.AddScoped<IUserServicio, UserServicio>();
+            //Inyectar el secreto
+            var appSettingSection = Configuration.GetSection("AppSetting");
+            services.Configure<AppSettings>(appSettingSection);
+            //JWT -- mandamos a pedir la clase que tiene el secreto
+            var appsettings = appSettingSection.Get<AppSettings>();
+            //llave
+            var llave = Encoding.ASCII.GetBytes(appsettings.Secreto);
+            //dar de alta el TOKEN
+            services.AddAuthentication(d =>
+            {
+                //instalar nugget lib de Jwtbearer
+                d.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                d.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+             //parte 2 de JWT, configurar
+             .AddJwtBearer(d=> {
+                 d.RequireHttpsMetadata = false;
+                 d.SaveToken = true;
+                 d.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                 {
+                     ValidateIssuerSigningKey = true,
+                     IssuerSigningKey = new SymmetricSecurityKey(llave),
+                     ValidateIssuer = false,
+                     ValidateAudience = false
+                 };
+             });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WSMapasTiendav2", Version = "v1" });
@@ -66,6 +97,8 @@ namespace WSMapasTiendav2
             app.UseRouting();
 
             app.UseAuthorization();
+            //agregamos autenticacion
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
