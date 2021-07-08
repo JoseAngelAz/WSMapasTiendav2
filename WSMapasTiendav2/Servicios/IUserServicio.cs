@@ -7,7 +7,8 @@ using WSMapasTiendav2.Models.Respuestas;
 
 namespace WSMapasTiendav2.Servicios
 {
-   public  interface IUserServicio
+    //Asegurar de hacer publico el metodo para que el controlador pueda accederlo en su constructor
+   public interface IUserServicio
     { 
         UsuarioRespuesta Auth(AuthPeticion apeticion);
     }

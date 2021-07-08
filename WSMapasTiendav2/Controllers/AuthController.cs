@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WSMapasTiendav2.Models.Peticiones;
+using WSMapasTiendav2.Models.Respuestas;
 using WSMapasTiendav2.Servicios;
 
 namespace WSMapasTiendav2.Controllers
@@ -16,7 +18,28 @@ namespace WSMapasTiendav2.Controllers
 
         public AuthController(IUserServicio userServicio)
         {
-
+            _userServicio = userServicio;
         }
+
+        //Respuesta Generica para el cliente
+        RespuestaGenerica miRes = new RespuestaGenerica();
+
+        //Autenticar Usuario
+        [HttpPost("login")]
+        public IActionResult Autentificar([FromBody] AuthPeticion Apeticion)
+        {
+            var UserResponse = _userServicio.Auth(Apeticion);
+            if (UserResponse == null)
+            {
+                miRes.Exito = 0;
+                miRes.Mensaje = "Usuario o contraseña incorrecta!";
+                return BadRequest(miRes);
+            }
+            miRes.Exito = 1;
+            miRes.Mensaje = "Usuario de Loggin Encontrado";
+            miRes.Data = UserResponse;
+            return Ok(miRes);
+        }
+
     }
 }
