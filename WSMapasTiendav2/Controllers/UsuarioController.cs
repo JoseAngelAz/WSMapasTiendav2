@@ -15,12 +15,12 @@ namespace WSMapasTiendav2.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        private IUserServicio _userService;
+        private  IUserServicio _userServi;
     
 
-        public UsuarioController(IUserServicio userService)
+         public UsuarioController(IUserServicio userService)
         {
-            _userService = userService;
+            _userServi = userService;
         }
        
         //Respuesta Generica para el cliente
@@ -30,7 +30,7 @@ namespace WSMapasTiendav2.Controllers
         [HttpPost("login")]
         public IActionResult Autentificar([FromBody] AuthPeticion Apeticion)
         {
-            var UserResponse = _userService.Auth(Apeticion);
+            var UserResponse = _userServi.Auth(Apeticion);
             if (UserResponse == null)
             {
                 miRes.Exito = 0;

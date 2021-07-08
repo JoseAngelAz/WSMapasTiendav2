@@ -7,8 +7,8 @@ using WSMapasTiendav2.Models.Respuestas;
 
 namespace WSMapasTiendav2.Servicios
 {
-    interface IUserServicio
-    {
+   public  interface IUserServicio
+    { 
         UsuarioRespuesta Auth(AuthPeticion apeticion);
     }
 }
