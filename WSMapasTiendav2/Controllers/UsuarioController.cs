@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace WSMapasTiendav2.Controllers
 {
 
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController]    
     public class UsuarioController : ControllerBase
     {
         private  IUserServicio _userServi;
