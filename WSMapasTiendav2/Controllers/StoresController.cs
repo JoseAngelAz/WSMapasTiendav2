@@ -11,6 +11,7 @@ using WSMapasTiendav2.Models.Respuestas;
 
 namespace WSMapasTiendav2.Controllers
 {
+    //localhost:puerto/api/Stores
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
@@ -18,11 +19,9 @@ namespace WSMapasTiendav2.Controllers
     {
         //Respuesta Generica para el cliente
         RespuestaGenerica miRes = new RespuestaGenerica();
-
         //Consultar Tiendas
         [HttpGet]
         public IActionResult GetStores() {            
-
             try {
                 using (MapasTiendaWSV2Context db = new MapasTiendaWSV2Context())
                 {

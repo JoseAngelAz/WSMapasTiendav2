@@ -11,23 +11,19 @@ using WSMapasTiendav2.Servicios;
 
 namespace WSMapasTiendav2.Controllers
 {
-
+    //localhost:puerto/api/Usuario
     [Route("api/[controller]")]
-    [ApiController]    
+    [ApiController]        
     public class UsuarioController : ControllerBase
-    {
-        private  IUserServicio _userServi;
-    
-
+    {        
+        private  IUserServicio _userServi;    
          public UsuarioController(IUserServicio userService)
         {
             _userServi = userService;
-        }
-       
+        }            
         //Respuesta Generica para el cliente
         RespuestaGenerica miRes = new RespuestaGenerica();
-
-        //Autenticar Usuario
+        //AUTENTICAR Usuario        
         [HttpPost("login")]
         public IActionResult Autentificar([FromBody] AuthPeticion Apeticion)
         {
@@ -42,7 +38,7 @@ namespace WSMapasTiendav2.Controllers
             miRes.Data = UserResponse;
             return Ok(miRes);
         }
-
+        
         
 
         // GET: api/<UsuarioController>

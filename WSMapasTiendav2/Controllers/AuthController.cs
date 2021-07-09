@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿/*using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +10,7 @@ using WSMapasTiendav2.Servicios;
 
 namespace WSMapasTiendav2.Controllers
 {
+    //localhost:puerto/api/Auth
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -25,6 +26,7 @@ namespace WSMapasTiendav2.Controllers
         RespuestaGenerica miRes = new RespuestaGenerica();
 
         //Autenticar Usuario
+        //localhost:44378/api/Auth/login
         [HttpPost("login")]
         public IActionResult Autentificar([FromBody] AuthPeticion Apeticion)
         {
@@ -43,3 +45,4 @@ namespace WSMapasTiendav2.Controllers
 
     }
 }
+*/
