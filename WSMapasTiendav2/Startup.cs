@@ -96,9 +96,9 @@ namespace WSMapasTiendav2
 
             app.UseRouting();
 
-            app.UseAuthorization();
             //agregamos autenticacion
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
